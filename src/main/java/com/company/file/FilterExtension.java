@@ -6,13 +6,13 @@ import java.io.FilenameFilter;
 /**
  * Фильтр файлов по расширению.
  */
-public class FilterExtension implements FilenameFilter {
+class FilterExtension implements FilenameFilter {
     /**
      * Расширении файла для сортировки.
      */
     private final String extension;
 
-    public FilterExtension(String string) {
+    FilterExtension(String string) {
         this.extension = string;
     }
 

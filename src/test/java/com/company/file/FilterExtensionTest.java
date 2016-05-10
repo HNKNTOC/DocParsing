@@ -23,8 +23,8 @@ public class FilterExtensionTest {
     @Test
     public void accept() throws Exception {
         File dir = new File("");
-        assertTrue(filterJar.accept(dir,"tast.jar"));
-        assertTrue(filterJar.accept(dir,"tast2.jar"));
+        assertTrue(filterJar.accept(dir,"test.jar"));
+        assertTrue(filterJar.accept(dir,"test2.jar"));
         assertTrue(filterJar.accept(dir,"jar.test.jar"));
 
 
