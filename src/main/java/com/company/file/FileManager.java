@@ -1,9 +1,12 @@
 package com.company.file;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.util.Arrays;
 
 /**
  * Данный класс отвечает за работу с файловой системой.
@@ -12,28 +15,32 @@ public class FileManager {
     private static final Logger LOGGER = LogManager.getLogger(FileManager.class);
 
     /**
-     * Возврашает все файлы из заданой деректории.
+     * Возвращает все файлы из заданной директории.
      *
-     * @param path      путь до деректории.
-     * @param extension расширение фойлов которых нужно вернуть.
-     * @return лист с найдеными файлами.
+     * @param path      путь до директории.
+     * @param extension расширение файлов которых нужно вернуть.
+     * @return лист с найденными файлами.
      */
     public File[] toAllFile(String path, String extension) {
         LOGGER.debug("toAllFile "+path+" extension:"+extension);
         File file = new File(path);
-        if (!checkDirectory(file)) return new File[]{};
-        return file.listFiles(new FilterExtension(extension));
+        File[] files = new File[]{};
+        if (checkDirectory(file)){
+            files = file.listFiles(new FilterExtension(extension));
+        }
+        LOGGER.debug("toAllFile return "+ Arrays.toString(files));
+        return files;
     }
 
     /**
-     * Проверка создана ли деректория.
+     * Проверка создана ли директория.
      *
-     * @param file дериктория которую нужно проверить.
-     * @return false если деректория не найдена.
+     * @param file директория которую нужно проверить.
+     * @return false если директория не найдена.
      */
     private boolean checkDirectory(File file) {
         if (!file.isDirectory()) {
-            LOGGER.warn("Путь " + file.getAbsolutePath() + " не евляется дерикторией!");
+            LOGGER.warn("Path " + file.getAbsolutePath() + " is not an existing directory!");
             return false;
         }
         return true;
